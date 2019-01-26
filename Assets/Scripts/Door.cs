@@ -4,38 +4,39 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public GameObject Target;
-    private int _keyNumber;
-    private bool _open = true;
+  private bool _open = true;
 
-    private GameObject _key;
+  private GameObject _key;
+  private bool _isOpen = false;
+  private float _rotZ;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        GameObject cpy;
+  // Start is called before the first frame update
+  void Start()
+  {
+    _rotZ = transform.localEulerAngles.z;
+  }
 
-        if (cpy = Target.transform.Find("Key").gameObject)
-        {
-            _open = false;
-            _key = cpy;
-        }
+  // Update is called once per frame
+  void Update()
+  {
+    if (_isOpen && transform.localRotation.z > _rotZ - 0.5f) {
+      transform.Rotate(Vector3.forward * -50.0f * Time.deltaTime, Space.Self);
     }
+  }
 
-    // Update is called once per frame
-    void Update()
+  private void OnTriggerEnter(Collider other)
+  {
+    if (other.gameObject.CompareTag("Player"))
     {
-
+      if (other.gameObject.GetComponent<PlayerController>().GetPickUpObjects().ContainsValue(this._key))
+      {
+        _open = true;
+      }
     }
+  }
 
-    private void OnTriggerEnter(Collider other)
+  public  void setIsOpen(bool doorStatus)
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            if (other.gameObject.GetComponent<PlayerController>().GetPickUpObjects().ContainsValue(this._key))
-            {
-                _open = true;
-            }
-        }
+        _isOpen = doorStatus;
     }
 }
