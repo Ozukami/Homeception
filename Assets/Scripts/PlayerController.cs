@@ -69,6 +69,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void    OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.CompareTag("Door")) {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Door door = other.gameObject.GetComponent<Door>();
+                door.setIsOpen(true);
+            }
+        }
+    }
+
+    // IEnumerator OpenDoor(Transform door, float nextRot)
+    // {
+    //     while(door.rotation.y < nextRot)
+    //     {
+    //         Debug.Log(door.rotation.y);
+    //         door.Rotate(0, Time.deltaTime * 100f, 0, Space.World);
+    //         yield return null;
+    //     }
+    // }
+
     public Dictionary<string, GameObject> GetPickUpObjects()
     {
         return _pickupObjects;
