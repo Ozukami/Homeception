@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Detection : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class Detection : MonoBehaviour
     }
 
   private void OnTriggerEnter (Collider other) {
-    Debug.Log("Vu !");
+    if (other.CompareTag("Player")) {
+      Debug.Log("Vu !");
+      GetComponentInParent<Monster>().Target = other.gameObject;
+    }
   }
 }
