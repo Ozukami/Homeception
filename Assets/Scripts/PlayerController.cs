@@ -65,9 +65,24 @@ public class PlayerController : MonoBehaviour
     _playerRigidBody.velocity = Vector3.ClampMagnitude(_playerRigidBody.velocity, _playerMaxSpeed);
   }
 
+<<<<<<< HEAD
+    void    OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.CompareTag("Door")) {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Door door = other.gameObject.GetComponent<Door>();
+                door.setIsOpen(true);
+            }
+        }
+    }
+
+    public Dictionary<string, GameObject> GetPickUpObjects()
+=======
   private void OnTriggerEnter(Collider other)
   {
     if (other.gameObject.CompareTag("Pick Up"))
+>>>>>>> 722bf1dfbab7687abe7065be8b0b8cd70daaa88a
     {
       GameObject objectToPickUp = other.gameObject;
       objectToPickUp.SetActive(false);
