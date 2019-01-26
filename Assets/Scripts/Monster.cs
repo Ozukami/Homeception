@@ -15,12 +15,14 @@ public class Monster : MonoBehaviour {
 
   // Start is called before the first frame update
   void Start() {
-    _navMeshAgent.SetDestination(Target.transform.position);
+
   }
 
   // Update is called once per frame
   void Update()
   {
-
+    if (Target) {
+      _navMeshAgent.SetDestination(Target.transform.position);
+    }
   }
 }
