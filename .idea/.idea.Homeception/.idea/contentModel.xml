@@ -170,11 +170,19 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
-          <e p="Body.cs" t="Include" />
           <e p="Detection.cs" t="Include" />
           <e p="Door.cs" t="Include" />
           <e p="Monster.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
+        </e>
+        <e p="srcs_Justine" t="Include">
+          <e p="DESIGN PERSONNAGES" t="Include">
+            <e p="0 - PERSONNAGE PRINCIPAL" t="Include">
+              <e p="Comptes rendus personnage principal.aep" t="Include">
+                <e p="AE 26-01-2019 21-01-12.txt" t="Include" />
+              </e>
+            </e>
+          </e>
         </e>
       </e>
       <e p="Homeception.sln" t="IncludeFlat" />
