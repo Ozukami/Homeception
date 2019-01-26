@@ -12,20 +12,12 @@ public class Detection : MonoBehaviour
     monster = GetComponentInParent<Monster>();
   }
 
-  private void CheckWall (Collider player, bool enter = true) {
-    if (player.CompareTag("Player")) {
-      RaycastHit hit;
-      Vector3 positionToPlayer = -(monster.gameObject.transform.position - player.gameObject.transform.position).normalized;
-      Debug.DrawLine(monster.gameObject.transform.position, positionToPlayer, Color.red);
-      Ray ray = new Ray(player.gameObject.transform.position, monster.gameObject.transform.position);
-      if (Physics.Raycast(ray, out hit)) {
-        Debug.Log(hit.collider.tag);
-        if (hit.collider != null && hit.collider.tag == "Wall") {
-          Debug.Log(hit.collider.tag);
-          //GetComponentInParent<Monster>().Target = (enter ? player.gameObject : null);
-        }
-      }
-    }
+  private void CheckWall (Collider player) {
+    if (!player.CompareTag("Player")) return;
+    Vector3 positionToPlayer = -(monster.gameObject.transform.position - player.gameObject.transform.position).normalized;
+    if (!Physics.Raycast(transform.position, positionToPlayer, out RaycastHit raycastHit)) return;
+    if (!raycastHit.collider.CompareTag("Player")) return;
+    monster.Target = raycastHit.collider.gameObject;
   }
 
   private void OnTriggerEnter (Collider other) {
@@ -37,9 +29,8 @@ public class Detection : MonoBehaviour
   }
 
   private void OnTriggerExit (Collider other) {
-    CheckWall(other, false);
-    /*if (other.CompareTag("Player")) {
+    if (other.CompareTag("Player")) {
       GetComponentInParent<Monster>().Target = null;
-    }*/
+    }
   }
 }
