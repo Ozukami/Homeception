@@ -11,12 +11,15 @@ public class PlayerController : MonoBehaviour
   [SerializeField] private float _playerDecSpeed = 0.8f;
   [SerializeField] private float _playerMaxSpeed = 10f;
   [SerializeField] private Camera _camera;
+  [SerializeField] private Transform _bodyPosition;
+  [SerializeField] private float _bouncingValue;
 
   private Animator[] _animator;
   private Rigidbody _playerRigidBody;
   private Vector3 _playerMovement;
   private Dictionary<string, GameObject> _pickupObjects;
   private NavMeshAgent _navMeshAgent;
+  private bool _isWalking;
 
   private void Awake() {
     _animator = GetComponentsInChildren<Animator>();
@@ -45,8 +48,12 @@ public class PlayerController : MonoBehaviour
     _camera.transform.position = position;
 
     foreach (Animator animator in _animator) {
-      animator.SetBool("isWalking", velocity.sqrMagnitude > 0.1f);
+      _isWalking = velocity.sqrMagnitude > 0.1f;
+      animator.SetBool("isWalking", _isWalking);
     }
+
+    if (_isWalking)
+      _bodyPosition.localPosition = new Vector3(0, 0, _bodyPosition.localPosition.z + ((Mathf.Sin(Time.time * 10) > 0) ? +_bouncingValue : -_bouncingValue));
   }
 
   private void FixedUpdate()
