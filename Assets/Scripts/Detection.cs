@@ -19,8 +19,13 @@ public class Detection : MonoBehaviour
 
   private void OnTriggerEnter (Collider other) {
     if (other.CompareTag("Player")) {
-      Debug.Log("Vu !");
       GetComponentInParent<Monster>().Target = other.gameObject;
+    }
+  }
+
+  private void OnTriggerExit (Collider other) {
+    if (other.CompareTag("Player")) {
+      GetComponentInParent<Monster>().Target = null;
     }
   }
 }
