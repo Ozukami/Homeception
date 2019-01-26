@@ -27,18 +27,24 @@ public class PlayerController : MonoBehaviour
 
     Debug.DrawLine(transform.position, transform.position - new Vector3(
         _playerRigidBody.velocity.x,
-        _playerRigidBody.velocity.y,
-        0
+        0,
+        _playerRigidBody.velocity.z
       ),
     Color.blue);
   }
 
   private void FixedUpdate() {
 
-		if (Math.Abs(_playerMovement.x) > 0.02 || Math.Abs(_playerMovement.y) > 0.02)
+		if (Math.Abs(_playerMovement.x) > 0.02f || Math.Abs(_playerMovement.z) > 0.02f)
 			_playerRigidBody.velocity = _playerMovement * _playerAccSpeed;
 		else
 			_playerRigidBody.velocity *= _playerDecSpeed;
 		_playerRigidBody.velocity = Vector3.ClampMagnitude(_playerRigidBody.velocity, _playerMaxSpeed);
+  }
+
+  private void OnTriggerEnter(Collider other) {
+    if (other.gameObject.CompareTag("Pick Up")) {
+      other.gameObject.SetActive (false);
+    }
   }
 }
