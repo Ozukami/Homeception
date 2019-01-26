@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _playerAccSpeed = 1f;
     [SerializeField] private float _playerDecSpeed = 0.8f;
     [SerializeField] private float _playerMaxSpeed = 5f;
+    [SerializeField] private Camera _camera;
 
     private Rigidbody _playerRigidBody;
     private Vector3 _playerMovement;
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour
             _playerRigidBody.velocity.z
           ),
         Color.blue);
+        _camera.transform.position = transform.position;
     }
 
     private void FixedUpdate()
