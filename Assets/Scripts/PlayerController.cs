@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
   private Animator[] _animator;
   private Rigidbody _playerRigidBody;
   private Vector3 _playerMovement;
-  private Dictionary<string, GameObject> _pickupObjects;
   private NavMeshAgent _navMeshAgent;
   private bool _isWalking;
   private bool _hasKey = false;
@@ -27,12 +26,10 @@ public class PlayerController : MonoBehaviour
     _playerRigidBody = GetComponent<Rigidbody>();
     _navMeshAgent = GetComponent<NavMeshAgent>();
     _playerMovement = Vector3.zero;
-    _pickupObjects = new Dictionary<string, GameObject>();
   }
 
   private void Update()
   {
-    Debug.Log(_hasKey);
     _playerMovement = new Vector3(
       (Input.GetAxis("Horizontal") > 0.2f || Input.GetAxis("Horizontal") < -0.2f ? Input.GetAxis("Horizontal") : 0),
       0,
@@ -67,53 +64,38 @@ public class PlayerController : MonoBehaviour
     _playerRigidBody.velocity = Vector3.ClampMagnitude(_playerRigidBody.velocity, _playerMaxSpeed);
   }
 
-    void    OnCollisionStay(Collision other)
-    {
-        if (other.gameObject.CompareTag("Door")) {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Door door = other.gameObject.GetComponent<Door>();
-                if (!door.getIsLocked())
-                {
-                  door.setIsOpen(true);
-                } else {
-                  door.setIsOpen(_hasKey);
-                }
-            }
-        }
-    }
-
-  private void OnTriggerEnter(Collider other)
-  {
-    Debug.Log("triggerred");
-    if (other.gameObject.CompareTag("Pick Up"))
-    {
-      GameObject objectToPickUp = other.gameObject;
-      objectToPickUp.SetActive(false);
-      objectToPickUp.transform.SetParent(transform.parent.Find("Inventory"));
-      _pickupObjects.Add(objectToPickUp.name[0].ToString(), objectToPickUp);
-    }
-    else if (other.gameObject.CompareTag("Bed")) {
-      Transform nightLight = other.gameObject.transform.Find("Night Light");
-      if (nightLight)
-        _navMeshAgent.SetDestination(nightLight.gameObject.transform.position);
-    }
+  private void OnCollisionStay(Collision other) {
+    if (other.gameObject.CompareTag("Door")) OpenDoor(other.gameObject);
   }
 
-  private void OnTriggerStay(Collider other)
-  {
-    if (other.gameObject.CompareTag("Key")) {
-          if (Input.GetKeyDown(KeyCode.E))
-            {
-              Debug.Log("Get Key");
-              other.gameObject.SetActive(false);
-              _hasKey = true;
-            }
-        }
+  private void OnTriggerEnter(Collider other) {
+    if (other.gameObject.CompareTag("Bed")) GoToBed(other.gameObject);
   }
 
-  public Dictionary<string, GameObject> GetPickUpObjects()
-  {
-    return _pickupObjects;
+  private void OnTriggerStay(Collider other) {
+    if (other.gameObject.CompareTag("Key")) PickUp(other.gameObject);
   }
+
+  #region Actions
+
+  private void GoToBed(GameObject bed) {
+    Transform nightLight = bed.transform.Find("Night Light");
+    if (nightLight)
+      _navMeshAgent.SetDestination(nightLight.gameObject.transform.position);
+  }
+
+  private void OpenDoor(GameObject door) {
+    if (!Input.GetKeyDown(KeyCode.E)) return;
+    door.GetComponent<Door>().Open(_hasKey);
+  }
+
+  private void PickUp(GameObject key) {
+    if (!Input.GetKeyDown(KeyCode.E)) return;
+    key.SetActive(false);
+    key.transform.SetParent(transform.parent.Find("Inventory"));
+    _hasKey = true;
+  }
+
+  #endregion
+
 }
