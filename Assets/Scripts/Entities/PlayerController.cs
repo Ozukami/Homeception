@@ -41,4 +41,10 @@ public class PlayerController : MonoBehaviour
 			_playerRigidBody.velocity *= _playerDecSpeed;
 		_playerRigidBody.velocity = Vector3.ClampMagnitude(_playerRigidBody.velocity, _playerMaxSpeed);
   }
+
+  private void OnTriggerEnter(Collider other) {
+    if (other.gameObject.CompareTag("Pick Up")) {
+      other.gameObject.SetActive (false);
+    }
+  }
 }
