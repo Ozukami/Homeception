@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
   private Dictionary<string, GameObject> _pickupObjects;
   private NavMeshAgent _navMeshAgent;
   private bool _isWalking;
+  private bool _hasKey = false;
 
   private void Awake() {
     _animator = GetComponentsInChildren<Animator>();
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
 
   private void Update()
   {
+    Debug.Log(_hasKey);
     _playerMovement = new Vector3(
       (Input.GetAxis("Horizontal") > 0.2f || Input.GetAxis("Horizontal") < -0.2f ? Input.GetAxis("Horizontal") : 0),
       0,
@@ -71,13 +73,19 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 Door door = other.gameObject.GetComponent<Door>();
-                door.setIsOpen(true);
+                if (!door.getIsLocked())
+                {
+                  door.setIsOpen(true);
+                } else {
+                  door.setIsOpen(_hasKey);
+                }
             }
         }
     }
 
   private void OnTriggerEnter(Collider other)
   {
+    Debug.Log("triggerred");
     if (other.gameObject.CompareTag("Pick Up"))
     {
       GameObject objectToPickUp = other.gameObject;
@@ -90,6 +98,18 @@ public class PlayerController : MonoBehaviour
       if (nightLight)
         _navMeshAgent.SetDestination(nightLight.gameObject.transform.position);
     }
+  }
+
+  private void OnTriggerStay(Collider other)
+  {
+    if (other.gameObject.CompareTag("Key")) {
+          if (Input.GetKeyDown(KeyCode.E))
+            {
+              Debug.Log("Get Key");
+              other.gameObject.SetActive(false);
+              _hasKey = true;
+            }
+        }
   }
 
   public Dictionary<string, GameObject> GetPickUpObjects()

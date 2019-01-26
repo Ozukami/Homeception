@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c92cb354-f5f2-4076-a3ca-ca33bcc88edf" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Homeception/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Homeception/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/IdleBody.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/IdleBody.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/WalkBody.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/WalkBody.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/WalkBody.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/WalkBody.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/FeatureScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/FeatureScene.unity" afterDir="false" />
-    </list>
+    <list default="true" id="c92cb354-f5f2-4076-a3ca-ca33bcc88edf" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,12 +211,12 @@
       <option name="presentableId" value="Default" />
       <updated>1548466313022</updated>
       <workItem from="1548466317802" duration="3390000" />
-      <workItem from="1548473996905" duration="18744000" />
+      <workItem from="1548473996905" duration="19034000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22134000" />
+    <option name="totallyTimeSpent" value="22424000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
