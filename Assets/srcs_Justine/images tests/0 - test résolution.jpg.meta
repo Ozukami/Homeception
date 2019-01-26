@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: e0355f50f612ebb41a5daf343b56c52a
+=======
+guid: bc67fde3de8ef430693379a669a9c3b6
+>>>>>>> 8d85ae70b01d669e009703be003284843a344c28
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}
@@ -41,7 +45,11 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 1
+<<<<<<< HEAD
   spriteExtrude: 1
+=======
+  spriteExtrude: 0
+>>>>>>> 8d85ae70b01d669e009703be003284843a344c28
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
