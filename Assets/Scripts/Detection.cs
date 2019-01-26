@@ -5,27 +5,41 @@ using UnityEngine.AI;
 
 public class Detection : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+  private Monster monster;
 
-    }
+  void Start()
+  {
+    monster = GetComponentInParent<Monster>();
+  }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-  private void OnTriggerEnter (Collider other) {
-    if (other.CompareTag("Player")) {
-      GetComponentInParent<Monster>().Target = other.gameObject;
+  private void CheckWall (Collider player, bool enter = true) {
+    if (player.CompareTag("Player")) {
+      RaycastHit hit;
+      Vector3 positionToPlayer = -(monster.gameObject.transform.position - player.gameObject.transform.position).normalized;
+      Debug.DrawLine(monster.gameObject.transform.position, positionToPlayer, Color.red);
+      Ray ray = new Ray(player.gameObject.transform.position, monster.gameObject.transform.position);
+      if (Physics.Raycast(ray, out hit)) {
+        Debug.Log(hit.collider.tag);
+        if (hit.collider != null && hit.collider.tag == "Wall") {
+          Debug.Log(hit.collider.tag);
+          //GetComponentInParent<Monster>().Target = (enter ? player.gameObject : null);
+        }
+      }
     }
   }
 
+  private void OnTriggerEnter (Collider other) {
+    CheckWall(other);
+  }
+
+  private void OnTriggerStay (Collider other) {
+    CheckWall(other);
+  }
+
   private void OnTriggerExit (Collider other) {
-    if (other.CompareTag("Player")) {
+    CheckWall(other, false);
+    /*if (other.CompareTag("Player")) {
       GetComponentInParent<Monster>().Target = null;
-    }
+    }*/
   }
 }
