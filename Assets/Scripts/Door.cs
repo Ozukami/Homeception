@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+  [SerializeField] private bool _isLocked = false;
   private bool _open = true;
 
   private GameObject _key;
   private bool _isOpen = false;
+
   private float _rotZ;
-  public GameObject Target;
+  // public GameObject Target;
   private int _keyNumber;
 
   // Start is called before the first frame update
@@ -37,15 +39,20 @@ public class Door : MonoBehaviour
     }
   }
 
+  public  bool getIsLocked()
+  {
+    return _isLocked;
+  }
+
   public  void setIsOpen(bool doorStatus)
   {
     _isOpen = doorStatus;
-    GameObject cpy;
+    // GameObject cpy;
 
-    if (cpy = Target.transform.Find("Key").gameObject)
-    {
-      _open = false;
-      _key = cpy;
-    }
+    // if (cpy = Target.transform.Find("Key").gameObject)
+    // {
+    //   _open = false;
+    //   _key = cpy;
+    // }
   }
 }
