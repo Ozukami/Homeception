@@ -1,0 +1,17 @@
+Adobe After Effects v15.0 Windows 64 - Compte rendu du projet personnage principal.aep
+
+Début du rendu le 26/01/2019 à 21:01:12
+
+  26/01/2019 21:01:12 : début de la composition 1 - HAUT PERSO.
+
+  Destin. : D:\DOCUMENTS\000 - TRAVAUX\jeux vidéos (création)\Homeception\Assets\srcs_Justine\DESIGN PERSONNAGES\0 - PERSONNAGE PRINCIPAL\ANIMATIONS\1 - marche\1 - Anim buste perso final\1 - HAUT PERSO_[#####].png    26/01/2019 21:01:16 : fin de la composition 1 - HAUT PERSO.
+
+
+  26/01/2019 21:01:16 : début de la composition 1 - ANIM JAMBES.
+
+  Destin. : D:\DOCUMENTS\000 - TRAVAUX\jeux vidéos (création)\Homeception\Assets\srcs_Justine\DESIGN PERSONNAGES\0 - PERSONNAGE PRINCIPAL\ANIMATIONS\1 - marche\1 - Jambes\1 - ANIM JAMBES_[#####].png    26/01/2019 21:01:17 : fin de la composition 1 - ANIM JAMBES.
+
+
+  Temps total écoulé : 5 Secondes
+Compte-rendu terminé le 26/01/2019 à 21:01:17
+
