@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody _playerRigidBody;
     private Vector3 _playerMovement;
-    private Dictionary<string, GameObject> _pickupObjects;
+    public Dictionary<string, GameObject> _pickupObjects;
 
     private void Awake()
     {
@@ -52,7 +52,12 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Pick Up"))
         {
             other.gameObject.SetActive(false);
-            this._pickupObjects.Add(other.gameObject.name, other.gameObject);
+            this._pickupObjects.Add(other.gameObject.name[0].ToString(), other.gameObject);
         }
+    }
+
+    public Dictionary<string, GameObject> GetPickUpObjects()
+    {
+        return this._pickupObjects;
     }
 }
