@@ -13,10 +13,12 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _playerRigidBody;
     private Vector3 _playerMovement;
     public Dictionary<string, GameObject> _pickupObjects;
+    private UnityEngine.AI.NavMeshAgent _navMeshAgent;
 
     private void Awake()
     {
         _playerRigidBody = GetComponent<Rigidbody>();
+        _navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         _playerMovement = Vector3.zero;
         _pickupObjects = new Dictionary<string, GameObject>();
     }
@@ -53,6 +55,10 @@ public class PlayerController : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             this._pickupObjects.Add(other.gameObject.name[0].ToString(), other.gameObject);
+        }
+        else if (other.gameObject.CompareTag("Bed"))
+        {
+            this._navMeshAgent.SetDestination(other.gameObject.transform.Find("Night Light").gameObject.transform.position);
         }
     }
 
