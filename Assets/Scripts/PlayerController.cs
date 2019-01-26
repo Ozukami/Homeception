@@ -2,24 +2,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float _playerAccSpeed = 1f;
+    [SerializeField] private float _playerAccSpeed = 5f;
     [SerializeField] private float _playerDecSpeed = 0.8f;
-    [SerializeField] private float _playerMaxSpeed = 5f;
+    [SerializeField] private float _playerMaxSpeed = 10f;
     [SerializeField] private Camera _camera;
 
     private Rigidbody _playerRigidBody;
     private Vector3 _playerMovement;
-    public Dictionary<string, GameObject> _pickupObjects;
+    private Dictionary<string, GameObject> _pickupObjects;
     private UnityEngine.AI.NavMeshAgent _navMeshAgent;
 
     private void Awake()
     {
         _playerRigidBody = GetComponent<Rigidbody>();
-        _navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        _navMeshAgent = GetComponent<NavMeshAgent>();
         _playerMovement = Vector3.zero;
         _pickupObjects = new Dictionary<string, GameObject>();
     }
@@ -32,18 +33,19 @@ public class PlayerController : MonoBehaviour
           (Input.GetAxis("Vertical") > 0.2f || Input.GetAxis("Vertical") < -0.2f ? Input.GetAxis("Vertical") : 0)
         );
 
-        Debug.DrawLine(transform.position, transform.position - new Vector3(
-            _playerRigidBody.velocity.x,
+        var velocity = _playerRigidBody.velocity;
+        var position = transform.position;
+        Debug.DrawLine(position, position - new Vector3(
+            velocity.x,
             0,
-            _playerRigidBody.velocity.z
+            velocity.z
           ),
         Color.blue);
-        _camera.transform.position = transform.position;
+        _camera.transform.position = position;
     }
 
     private void FixedUpdate()
     {
-
         if (Math.Abs(_playerMovement.x) > 0.02f || Math.Abs(_playerMovement.z) > 0.02f)
             _playerRigidBody.velocity = _playerMovement * _playerAccSpeed;
         else
@@ -55,17 +57,20 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Pick Up"))
         {
-            other.gameObject.SetActive(false);
-            this._pickupObjects.Add(other.gameObject.name[0].ToString(), other.gameObject);
+            GameObject objectToPickUp = other.gameObject;
+            objectToPickUp.SetActive(false);
+            objectToPickUp.transform.SetParent(transform.parent.Find("Inventory"));
+            _pickupObjects.Add(objectToPickUp.name[0].ToString(), objectToPickUp);
         }
-        else if (other.gameObject.CompareTag("Bed"))
-        {
-            this._navMeshAgent.SetDestination(other.gameObject.transform.Find("Night Light").gameObject.transform.position);
+        else if (other.gameObject.CompareTag("Bed")) {
+          Transform nightLight = other.gameObject.transform.Find("Night Light");
+          if (nightLight)
+            _navMeshAgent.SetDestination(nightLight.gameObject.transform.position);
         }
     }
 
     public Dictionary<string, GameObject> GetPickUpObjects()
     {
-        return this._pickupObjects;
+        return _pickupObjects;
     }
 }

@@ -170,20 +170,10 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
-          <e p="Entities" t="Include">
-            <e p="Detection" t="Include">
-              <e p="Detection.cs" t="Include" />
-            </e>
-            <e p="Door" t="Include">
-              <e p="Door.cs" t="Include" />
-            </e>
-            <e p="Monster" t="Include">
-              <e p="Monster.cs" t="Include" />
-            </e>
-            <e p="Player" t="Include">
-              <e p="PlayerController.cs" t="Include" />
-            </e>
-          </e>
+          <e p="Detection.cs" t="Include" />
+          <e p="Door.cs" t="Include" />
+          <e p="Monster.cs" t="Include" />
+          <e p="PlayerController.cs" t="Include" />
         </e>
       </e>
       <e p="Homeception.sln" t="IncludeFlat" />

@@ -8,16 +8,17 @@ public class Door : MonoBehaviour
     private int _keyNumber;
     private bool _open = true;
 
-    private GameObject _associateKey;
+    private GameObject _key;
+
     // Start is called before the first frame update
     void Start()
     {
         GameObject cpy;
 
-        if (cpy = this.Target.transform.Find("Key").gameObject)
+        if (cpy = Target.transform.Find("Key").gameObject)
         {
-            this._open = false;
-            this._associateKey = cpy;
+            _open = false;
+            _key = cpy;
         }
     }
 
@@ -31,9 +32,9 @@ public class Door : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (other.gameObject.GetComponent<PlayerController>().GetPickUpObjects().ContainsValue(this._associateKey))
+            if (other.gameObject.GetComponent<PlayerController>().GetPickUpObjects().ContainsValue(this._key))
             {
-                this._open = true;
+                _open = true;
             }
         }
     }
