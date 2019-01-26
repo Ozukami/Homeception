@@ -1,12 +1,20 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: b6cda9769fdac45a5aeb4125629bef0e
+=======
+guid: 7b717d643fc1a0d42b7ab8f2534cc777
+>>>>>>> 21c3e1cdcef7abe1fb2a156d9cfc7fcd7f8a6744
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
     mipMapMode: 0
+<<<<<<< HEAD
     enableMipMap: 1
+=======
+    enableMipMap: 0
+>>>>>>> 21c3e1cdcef7abe1fb2a156d9cfc7fcd7f8a6744
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -32,6 +40,7 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: -1
+<<<<<<< HEAD
     aniso: -1
     mipBias: -100
     wrapU: -1
@@ -41,6 +50,17 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 0
+=======
+    aniso: 0
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+>>>>>>> 21c3e1cdcef7abe1fb2a156d9cfc7fcd7f8a6744
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -48,10 +68,17 @@ TextureImporter:
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
+<<<<<<< HEAD
   alphaUsage: 1
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
   textureType: 0
+=======
+  alphaUsage: 2
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+>>>>>>> 21c3e1cdcef7abe1fb2a156d9cfc7fcd7f8a6744
   textureShape: 1
   singleChannelComponent: 0
   maxTextureSizeSet: 0
@@ -63,7 +90,22 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
+<<<<<<< HEAD
     textureCompression: 1
+=======
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+>>>>>>> 21c3e1cdcef7abe1fb2a156d9cfc7fcd7f8a6744
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
