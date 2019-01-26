@@ -15,14 +15,14 @@ TagManager:
   - 
   - PostProcessing
   - Light
+  - Map
+  - Ground
   - 
+  - Walkable
   - 
+  - Player
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Blocking
   - 
   - 
   - 
