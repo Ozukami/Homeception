@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2916608873166664613}
   - component: {fileID: 2916608872528119864}
   m_Layer: 0
-  m_Name: prop_cctvCam_collision
+  m_Name: VisionCone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2916608873168858469}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.031647034, z: -0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 3.6583323}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
