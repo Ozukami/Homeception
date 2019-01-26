@@ -170,6 +170,7 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="Body.cs" t="Include" />
           <e p="Detection.cs" t="Include" />
           <e p="Door.cs" t="Include" />
           <e p="Monster.cs" t="Include" />
