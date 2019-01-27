@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
   private Rigidbody _playerRigidBody;
   private Vector3 _playerMovement;
   private NavMeshAgent _navMeshAgent;
+  private bool _canControl = true;
   private bool _isWalking;
   private bool _isTurned;
   private bool _wasTurned;
@@ -35,25 +36,39 @@ public class PlayerController : MonoBehaviour
     _playerMovement = Vector3.zero;
   }
 
-  private void Update()
-  {
-    _playerMovement = new Vector3(
-      (Input.GetAxis("Horizontal") > 0.2f || Input.GetAxis("Horizontal") < -0.2f ? Input.GetAxis("Horizontal") : 0),
-      0,
-      (Input.GetAxis("Vertical") > 0.2f || Input.GetAxis("Vertical") < -0.2f ? Input.GetAxis("Vertical") : 0)
-    );
-
-    var velocity = _playerRigidBody.velocity;
+  private void Update() {
     var position = transform.position;
-    Debug.DrawLine(position, position - new Vector3(
-                               velocity.x,
-                               0,
-                               velocity.z
-                             ),
-      Color.blue);
     _camera.transform.position = position;
+    if (!_canControl) {
+      _playerRigidBody.velocity = Vector3.zero;
+      _playerRigidBody.angularVelocity = Vector3.zero;
+      _playerMovement = Vector3.zero;
+      if (_navMeshAgent.hasPath && _navMeshAgent.remainingDistance < 0.1f) {
+        _isWalking = false;
+        _navMeshAgent.ResetPath();
+        foreach (Animator animator in _animator) {
+          animator.SetBool(IsWalking, _isWalking);
+          animator.SetTrigger("lantern");
+        }
+      }
+    }
+    else {
+      _playerMovement = new Vector3(
+        (Input.GetAxis("Horizontal") > 0.2f || Input.GetAxis("Horizontal") < -0.2f ? Input.GetAxis("Horizontal") : 0),
+        0,
+        (Input.GetAxis("Vertical") > 0.2f || Input.GetAxis("Vertical") < -0.2f ? Input.GetAxis("Vertical") : 0)
+      );
 
-    Animation(velocity);
+      var velocity = _playerRigidBody.velocity;
+      Debug.DrawLine(position, position - new Vector3(
+                                 velocity.x,
+                                 0,
+                                 velocity.z
+                               ),
+        Color.blue);
+
+      Animation(velocity);
+    }
   }
 
   private void FixedUpdate()
@@ -80,9 +95,12 @@ public class PlayerController : MonoBehaviour
   #region Actions
 
   private void GoToBed(GameObject bed) {
+    Debug.Log("Go to bed");
     Transform nightLight = bed.transform.Find("Night Light");
-    if (nightLight)
-      _navMeshAgent.SetDestination(nightLight.gameObject.transform.position);
+    if (!nightLight) return;
+    _navMeshAgent.SetDestination(nightLight.gameObject.transform.position);
+    _canControl = false;
+    _isWalking = true;
   }
 
   private void OpenDoor(GameObject door) {

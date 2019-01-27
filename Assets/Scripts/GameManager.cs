@@ -5,29 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-  public static GameManager instance = null;
-  private int _nextSceneIndex;
+  private static GameManager _instance;
 
-  private void Awake()
-  {
-    if (instance == null)
-    {
-      instance = this;
-    }
-    else if (instance != this)
-    {
-      Destroy(gameObject);
+  public GameManager Instance {
+    get {
+      if (_instance == null)
+        _instance = this;
+      else if (_instance != this)
+        Destroy(gameObject);
+      return _instance;
     }
   }
 
-  // Update is called once per frame
-  void Update()
+  public void Update()
   {
-    _nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+    if (Input.GetKeyDown(KeyCode.N)) NextScene();
   }
 
-  public void nextScene()
-  {
-    SceneManager.LoadScene(_nextSceneIndex);
+  public void NextScene() {
+    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1 % SceneManager.sceneCount);
   }
 }
