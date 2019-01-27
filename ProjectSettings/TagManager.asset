@@ -9,6 +9,7 @@ TagManager:
   - Pick Up
   - Door
   - Key
+  - NightLight
   layers:
   - Default
   - TransparentFX
