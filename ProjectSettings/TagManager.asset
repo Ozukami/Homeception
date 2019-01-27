@@ -10,6 +10,7 @@ TagManager:
   - Door
   - Key
   - NightLight
+  - Pot
   layers:
   - Default
   - TransparentFX

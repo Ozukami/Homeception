@@ -174,8 +174,10 @@
           <e p="Detection.cs" t="Include" />
           <e p="Door.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
+          <e p="Lvl2Manager.cs" t="Include" />
           <e p="Monster.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
+          <e p="Pot.cs" t="Include" />
         </e>
         <e p="srcs_Justine" t="Include">
           <e p="DESIGN PERSONNAGES" t="Include">
