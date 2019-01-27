@@ -15,14 +15,14 @@ public class Lvl2Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach (Pot pot in List < Pot > potList)
-        {
-            if (!pot.isValid)
-                return;
-        }
-        GameObject player = GameObject.Find("Player");
-        GameObject keyFromRiddle = GameObject.Find("KeyFromRiddle");
-        player.PickUp(keyFromRiddle);
-        keyFromRiddle.SetActive(true);
+//        foreach (Pot pot in List < Pot > potList)
+//        {
+//            if (!pot.isValid)
+//                return;
+//        }
+//        GameObject player = GameObject.Find("Player");
+//        GameObject keyFromRiddle = GameObject.Find("KeyFromRiddle");
+//        player.PickUp(keyFromRiddle);
+//        keyFromRiddle.SetActive(true);
     }
 }

@@ -22,7 +22,8 @@ public class GameManager : MonoBehaviour
     _endPoint = GameObject.Find("EndPoint");
     _endLanternOff = GameObject.Find("EndLanternOff");
     _endLanternOn = GameObject.Find("EndLanternOn");
-    _endLanternOn.SetActive(false);
+    if (_endLanternOn)
+      _endLanternOn.SetActive(false);
   }
 
   public void Update()
