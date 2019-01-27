@@ -5,29 +5,39 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-  public static GameManager instance = null;
-  private int _nextSceneIndex;
+  public static GameManager instance;
 
-  private void Awake()
-  {
+  private GameObject _endLanternOn;
+  private GameObject _endLanternOff;
+  private GameObject _endPoint;
+
+  public GameObject EndPoint => _endPoint;
+
+  private void Awake() {
     if (instance == null)
-    {
       instance = this;
-    }
     else if (instance != this)
-    {
       Destroy(gameObject);
-    }
+
+    _endPoint = GameObject.Find("EndPoint");
+    _endLanternOff = GameObject.Find("EndLanternOff");
+    _endLanternOn = GameObject.Find("EndLanternOn");
+    _endLanternOn.SetActive(false);
   }
 
-  // Update is called once per frame
-  void Update()
+  public void Update()
   {
-    _nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+    if (Input.GetKeyDown(KeyCode.N)) NextScene();
   }
 
-  public void nextScene()
-  {
-    SceneManager.LoadScene(_nextSceneIndex);
+  public void NextScene() {
+    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1 % SceneManager.sceneCount);
+  }
+
+  public void DropLantern() {
+    if (_endLanternOff.activeSelf)
+      _endLanternOff.SetActive(false);
+    if (!_endLanternOn.activeSelf)
+      _endLanternOn.SetActive(true);
   }
 }
