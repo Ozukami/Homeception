@@ -124,15 +124,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6496230553948661570, guid: e9f1bc211e05cda4ca8f8b821c986e1d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6496230553948661571, guid: e9f1bc211e05cda4ca8f8b821c986e1d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6496230553948661571, guid: e9f1bc211e05cda4ca8f8b821c986e1d,
         type: 3}
@@ -142,7 +137,7 @@ PrefabInstance:
     - target: {fileID: 6496230553948661571, guid: e9f1bc211e05cda4ca8f8b821c986e1d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -25.2
+      value: -24.3
       objectReference: {fileID: 0}
     - target: {fileID: 6496230553948661571, guid: e9f1bc211e05cda4ca8f8b821c986e1d,
         type: 3}
@@ -183,19 +178,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: e9f1bc211e05cda4ca8f8b821c986e1d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1700374647, guid: e9f1bc211e05cda4ca8f8b821c986e1d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6496230553256967542, guid: e9f1bc211e05cda4ca8f8b821c986e1d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9f1bc211e05cda4ca8f8b821c986e1d, type: 3}
@@ -788,30 +770,6 @@ PrefabInstance:
     - target: {fileID: 8680321063199142206, guid: ae724cfc66a271443bae5fb092c82060,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 233870189, guid: ae724cfc66a271443bae5fb092c82060, type: 3}
-      propertyPath: m_Name
-      value: BakingCollider
-      objectReference: {fileID: 0}
-    - target: {fileID: 233870189, guid: ae724cfc66a271443bae5fb092c82060, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 605371006, guid: ae724cfc66a271443bae5fb092c82060, type: 3}
-      propertyPath: m_Name
-      value: BakingCollider
-      objectReference: {fileID: 0}
-    - target: {fileID: 605371006, guid: ae724cfc66a271443bae5fb092c82060, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 233870192, guid: ae724cfc66a271443bae5fb092c82060, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 605371009, guid: ae724cfc66a271443bae5fb092c82060, type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

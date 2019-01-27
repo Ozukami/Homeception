@@ -151,12 +151,12 @@ GameObject:
   - component: {fileID: 233870192}
   - component: {fileID: 233870191}
   m_Layer: 0
-  m_Name: Navigation
+  m_Name: BakingCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &233870190
 Transform:
   m_ObjectHideFlags: 0
@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 605371009}
   - component: {fileID: 605371008}
   m_Layer: 0
-  m_Name: Navigation
+  m_Name: BakingCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
