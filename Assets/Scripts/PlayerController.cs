@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
   private Animator _bodyAnimator;
   private Animator _legsAnimator;
+  private GameObject _lights;
   private Rigidbody _playerRigidBody;
   private Vector3 _playerMovement;
   private NavMeshAgent _navMeshAgent;
@@ -24,7 +25,8 @@ public class PlayerController : MonoBehaviour
   private bool _isWalking;
   private bool _isTurned;
   private bool _wasTurned;
-  private bool _end;
+  private bool _canDropLantern;
+  private bool _canEnd;
   private bool _hasKey = false;
   private string _turnTo;
 
@@ -38,6 +40,7 @@ public class PlayerController : MonoBehaviour
     GameObject sprite = transform.Find("Sprite").gameObject;
     _bodyAnimator = sprite.transform.Find("Body").GetComponent<Animator>();
     _legsAnimator = sprite.transform.Find("Legs").GetComponent<Animator>();
+    _lights = transform.Find("Lights").gameObject;
     _playerRigidBody = GetComponent<Rigidbody>();
     _navMeshAgent = GetComponent<NavMeshAgent>();
     _playerMovement = Vector3.zero;
@@ -49,12 +52,16 @@ public class PlayerController : MonoBehaviour
 
     if (!_canControl) {
       ResetVelocity();
-      if (_end && _bodyAnimator.GetCurrentAnimatorStateInfo(0).IsName("BodyLantern")) {
+      if (_canEnd && _navMeshAgent.remainingDistance < 0.5f) {
+        GameManager.instance.NextScene();
+      }
+      if (_canDropLantern && _bodyAnimator.GetCurrentAnimatorStateInfo(0).IsName("BodyLantern")) {
         GameManager.instance.DropLantern();
+        _lights.SetActive(false);
         GoToBed();
       }
       if (!_navMeshAgent.hasPath || !(_navMeshAgent.remainingDistance < 0.1f)) return;
-      _end = true;
+      _canDropLantern = true;
       _navMeshAgent.ResetPath();
       _legsAnimator.SetBool(IsWalking, _isWalking = false);
       _bodyAnimator.SetBool(IsWalking, _isWalking);
@@ -113,6 +120,7 @@ public class PlayerController : MonoBehaviour
     _legsAnimator.SetBool(IsWalking, _isWalking = true);
     _bodyAnimator.SetBool(IsWalking, _isWalking);
     _isTurned = false;
+    _canEnd = true;
   }
 
   private void OpenDoor(GameObject door) {
@@ -148,6 +156,10 @@ public class PlayerController : MonoBehaviour
     if (_isWalking)
       _bodyPosition.localPosition = new Vector3(0, 0,
         _bodyPosition.localPosition.z + ((Mathf.Sin(Time.time * 10) > 0) ? +_bouncingValue : -_bouncingValue));
+  }
+
+  private enum GameState {
+
   }
 
 }

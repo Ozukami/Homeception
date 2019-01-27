@@ -176,11 +176,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fa5f52e73fa2449192303576ca6c488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _camera: {fileID: 6496230553256967541}
+  _bodyPosition: {fileID: 9145859900204146751}
   _playerAccSpeed: 5
   _playerDecSpeed: 0.8
   _playerMaxSpeed: 10
-  _camera: {fileID: 6496230553256967541}
-  _bodyPosition: {fileID: 9145859900204146751}
   _bouncingValue: 0.005
 --- !u!195 &380993724
 NavMeshAgent:
@@ -520,7 +520,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3869985042515342384}
   m_Layer: 15
-  m_Name: Light
+  m_Name: Lights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

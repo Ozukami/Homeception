@@ -5,20 +5,20 @@ using UnityEngine.AI;
 
 public class Detection : MonoBehaviour
 {
-  private Monster monster;
+  private Monster _monster;
 
-  void Start()
+  public void Start()
   {
-    monster = GetComponentInParent<Monster>();
+    _monster = GetComponentInParent<Monster>();
   }
 
   private void CheckWall (Collider player) {
     if (!player.CompareTag("Player")) return;
-    Vector3 positionToPlayer = -(monster.gameObject.transform.position - player.gameObject.transform.position).normalized;
+    Vector3 positionToPlayer = -(_monster.gameObject.transform.position - player.gameObject.transform.position).normalized;
     transform.LookAt(player.transform);
     if (!Physics.Raycast(transform.position, positionToPlayer, out RaycastHit raycastHit)) return;
     if (!raycastHit.collider.CompareTag("Player")) return;
-    monster.Target = raycastHit.collider.gameObject;
+    _monster.Target = raycastHit.collider.gameObject;
   }
 
   private void OnTriggerEnter (Collider other) {
