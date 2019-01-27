@@ -95,7 +95,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: 
+  m_WarningMessage:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -139,10 +139,6 @@ Transform:
   - {fileID: 160328240}
   - {fileID: 1554831016}
   - {fileID: 2615234348616851733}
-=======
-  - {fileID: 4704373425724547871}
-  - {fileID: 3869985042515342384}
->>>>>>> acf2e5623f19bf6d98c8470240eefeb197728705
   m_Father: {fileID: 6496230553948661571}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -185,8 +181,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4fa5f52e73fa2449192303576ca6c488, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   _playerAccSpeed: 5
   _playerDecSpeed: 0.8
   _playerMaxSpeed: 10
@@ -703,8 +699,8 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   profile: {fileID: 11400000, guid: 889da2026ca0f414298b2175eccdb5bf, type: 2}
 --- !u!1 &6496230553948661570
 GameObject:
@@ -903,7 +899,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: 
+  m_WarningMessage:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
