@@ -67,81 +67,13 @@ public class PlayerController : MonoBehaviour
       _bodyAnimator.SetBool(IsWalking, _isWalking);
       _bodyAnimator.SetTrigger(Lantern);
     }
-
-    private void Update()
-    {
-        _playerMovement = new Vector3(
-          (Input.GetAxis("Horizontal") > 0.2f || Input.GetAxis("Horizontal") < -0.2f ? Input.GetAxis("Horizontal") : 0),
-          0,
-          (Input.GetAxis("Vertical") > 0.2f || Input.GetAxis("Vertical") < -0.2f ? Input.GetAxis("Vertical") : 0)
-        );
-
-        var velocity = _playerRigidBody.velocity;
-        var position = transform.position;
-        Debug.DrawLine(position, position - new Vector3(
-                                   velocity.x,
-                                   0,
-                                   velocity.z
-                                 ),
-          Color.blue);
-        _camera.transform.position = position;
-
-        Animation(velocity);
-    }
-
-    private void FixedUpdate()
-    {
-        if (Math.Abs(_playerMovement.x) > 0.02f || Math.Abs(_playerMovement.z) > 0.02f)
-            _playerRigidBody.velocity = _playerMovement * _playerAccSpeed;
-        else
-            _playerRigidBody.velocity *= _playerDecSpeed;
-        _playerRigidBody.velocity = Vector3.ClampMagnitude(_playerRigidBody.velocity, _playerMaxSpeed);
-    }
-
-    private void OnCollisionStay(Collision other)
-    {
-        if (other.gameObject.CompareTag("Door")) OpenDoor(other.gameObject);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Bed")) GoToBed(other.gameObject);
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("Key")) PickUp(other.gameObject);
-    }
-
-    #region Actions
-
-    private void GoToBed(GameObject bed)
-    {
-        foreach (Animator animator in _animator)
-        {
-            _animator[0].SetTrigger(BodyLantern);
-            _animator[1].SetTrigger(BodyLantern);
-            Debug.Log("Triger");
-        }
-        Transform nightLight = bed.transform.Find("Night Light");
-        if (nightLight)
-        {
-            _navMeshAgent.SetDestination(nightLight.gameObject.transform.position);
-        }
-    }
-
-    private void OpenDoor(GameObject door)
-    {
-        if (!Input.GetKeyDown(KeyCode.E)) return;
-        door.GetComponent<Door>().Open(_hasKey);
-    }
-
-    private void PickUp(GameObject key)
-    {
-        if (!Input.GetKeyDown(KeyCode.E)) return;
-        key.SetActive(false);
-        key.transform.SetParent(transform.parent.Find("Inventory"));
-        _hasKey = true;
+    else {
+      _playerMovement = new Vector3(
+        (Input.GetAxis("Horizontal") > 0.2f || Input.GetAxis("Horizontal") < -0.2f ? Input.GetAxis("Horizontal") : 0),
+        0,
+        (Input.GetAxis("Vertical") > 0.2f || Input.GetAxis("Vertical") < -0.2f ? Input.GetAxis("Vertical") : 0)
+      );
+      MovementAnimation(_playerRigidBody.velocity);
     }
   }
 
@@ -215,6 +147,16 @@ public class PlayerController : MonoBehaviour
       _bodyAnimator.SetTrigger((_wasTurned) ? TurnToFront : TurnToBack);
       _legsAnimator.SetTrigger((_wasTurned) ? TurnToFront : TurnToBack);
     }
+    _wasTurned = _isTurned;
+    _bodyAnimator.SetBool(IsWalking, _isWalking = velocity.sqrMagnitude > 0.1f);
+    _legsAnimator.SetBool(IsWalking, _isWalking);
+    _bodyAnimator.SetBool(IsTurned, _isTurned);
+    _legsAnimator.SetBool(IsTurned, _isTurned);
+
+    if (_isWalking)
+      _bodyPosition.localPosition = new Vector3(0, 0,
+        _bodyPosition.localPosition.z + ((Mathf.Sin(Time.time * 10) > 0) ? +_bouncingValue : -_bouncingValue));
+  }
 
   private enum GameState {
 
