@@ -19,7 +19,14 @@ public class PlayerController : MonoBehaviour
   private Vector3 _playerMovement;
   private NavMeshAgent _navMeshAgent;
   private bool _isWalking;
+  private bool _isTurned;
+  private bool _wasTurned;
+  private string _turnTo;
   private bool _hasKey = false;
+  private static readonly int IsWalking = Animator.StringToHash("isWalking");
+  private static readonly int IsTurned = Animator.StringToHash("isTurned");
+  private static readonly int TurnToFront = Animator.StringToHash("turnToFront");
+  private static readonly int TurnToBack = Animator.StringToHash("turnToBack");
 
   private void Awake() {
     _animator = GetComponentsInChildren<Animator>();
@@ -46,13 +53,7 @@ public class PlayerController : MonoBehaviour
       Color.blue);
     _camera.transform.position = position;
 
-    foreach (Animator animator in _animator) {
-      _isWalking = velocity.sqrMagnitude > 0.1f;
-      animator.SetBool("isWalking", _isWalking);
-    }
-
-    if (_isWalking)
-      _bodyPosition.localPosition = new Vector3(0, 0, _bodyPosition.localPosition.z + ((Mathf.Sin(Time.time * 10) > 0) ? +_bouncingValue : -_bouncingValue));
+    Animation(velocity);
   }
 
   private void FixedUpdate()
@@ -97,5 +98,23 @@ public class PlayerController : MonoBehaviour
   }
 
   #endregion
+
+  private void Animation (Vector3 velocity) {
+    _isWalking = velocity.sqrMagnitude > 0.1f;
+    _isTurned = _playerMovement.z > 0f;
+    if (_isTurned != _wasTurned) {
+      _animator[0].SetTrigger((_wasTurned) ? TurnToFront : TurnToBack);
+      _animator[1].SetTrigger((_wasTurned) ? TurnToFront : TurnToBack);
+    }
+    _wasTurned = _isTurned;
+    foreach (Animator animator in _animator) {
+      animator.SetBool(IsWalking, _isWalking);
+      animator.SetBool(IsTurned, _isTurned);
+    }
+
+    if (_isWalking)
+      _bodyPosition.localPosition = new Vector3(0, 0,
+        _bodyPosition.localPosition.z + ((Mathf.Sin(Time.time * 10) > 0) ? +_bouncingValue : -_bouncingValue));
+  }
 
 }
