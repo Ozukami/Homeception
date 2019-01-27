@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FinalScenes/Tuto.unity
     guid: 2cb4029327af4674abdc80b62a40eb64
+  - enabled: 1
+    path: Assets/Scenes/FinalScenes/Level_1.unity
+    guid: 82fcf699f974e304784afe448741bd99
   m_configObjects: {}
