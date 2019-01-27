@@ -27,7 +27,8 @@ public class PlayerController : MonoBehaviour
   private bool _wasTurned;
   private bool _canDropLantern;
   private bool _canEnd;
-  private bool _hasKey = false;
+  private bool _hasKey;
+  private bool _hasPainting;
   private string _turnTo;
 
   private static readonly int IsWalking = Animator.StringToHash("isWalking");
@@ -94,6 +95,7 @@ public class PlayerController : MonoBehaviour
 
   private void OnCollisionStay(Collision other) {
     if (other.gameObject.CompareTag("Door")) OpenDoor(other.gameObject);
+    if (other.gameObject.CompareTag("PaintingSpot")) SolveRiddle(other.gameObject);
   }
 
   private void OnTriggerEnter(Collider other) {
@@ -101,8 +103,10 @@ public class PlayerController : MonoBehaviour
   }
 
   private void OnTriggerStay(Collider other) {
+    if (other.gameObject.CompareTag("Pick Up")) PickUp(other.gameObject);
     if (other.gameObject.CompareTag("Key")) PickUp(other.gameObject);
     if (other.gameObject.CompareTag("Door")) OpenDoor(other.gameObject);
+    if (other.gameObject.CompareTag("PaintingSpot")) SolveRiddle(other.gameObject);
   }
 
   #region Actions
@@ -128,11 +132,17 @@ public class PlayerController : MonoBehaviour
     door.GetComponent<Door>().Open(_hasKey);
   }
 
-  private void PickUp(GameObject key) {
+  private void SolveRiddle(GameObject paintingSpot) {
     if (!Input.GetKeyDown(KeyCode.E)) return;
-    key.SetActive(false);
-    key.transform.SetParent(transform.parent.Find("Inventory"));
-    _hasKey = true;
+    paintingSpot.GetComponent<PaintingSpot>().Solve(_hasPainting);
+  }
+
+  private void PickUp(GameObject item) {
+    if (!Input.GetKeyDown(KeyCode.E)) return;
+    item.SetActive(false);
+    item.transform.SetParent(transform.parent.Find("Inventory"));
+    if (item.CompareTag("Key")) _hasKey = true;
+    if (item.CompareTag("Painting")) _hasPainting = true;
   }
 
   #endregion

@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+  public bool isPaintingLocked;
 
   private GameObject _key;
   private bool _isOpen;
   private float _rotZ;
 
-  private bool IsLocked => _key != null;
+  private bool IsKeyLocked => _key != null;
 
   private void Awake () {
     if (transform.childCount == 0) return;
@@ -30,7 +31,8 @@ public class Door : MonoBehaviour
   }
 
   public void Open (bool playerHasKey) {
-    if (IsLocked && !playerHasKey) return;
+    if (isPaintingLocked) return;
+    if (IsKeyLocked && !playerHasKey) return;
     _isOpen = true;
   }
 }

@@ -11,6 +11,8 @@ TagManager:
   - Key
   - NightLight
   - Pot
+  - Painting
+  - PaintingSpot
   layers:
   - Default
   - TransparentFX
