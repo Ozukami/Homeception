@@ -101,7 +101,10 @@ public class PlayerController : MonoBehaviour
 
   private void Animation (Vector3 velocity) {
     _isWalking = velocity.sqrMagnitude > 0.1f;
-    _isTurned = _playerMovement.z > 0f;
+    if (_playerMovement.z > 0f)
+      _isTurned = true;
+    if (_playerMovement.z < 0f)
+      _isTurned = false;
     if (_isTurned != _wasTurned) {
       _animator[0].SetTrigger((_wasTurned) ? TurnToFront : TurnToBack);
       _animator[1].SetTrigger((_wasTurned) ? TurnToFront : TurnToBack);
